@@ -71,6 +71,15 @@ export default {
       }
 
       this.$emit('add', payload)
+
+      this.clearField()
+      this.changeRandomColor()
+    },
+    clearField () {
+      this.newTodo = ''
+    },
+    changeRandomColor() {
+      this.newTodoColor = { hex: getRandomHexColor() }
     }
   }
 }
@@ -84,7 +93,7 @@ export default {
 
 .editor {
   position: relative;
-  width: 546px;
+  width: 463px;
   margin: 0 auto;
   margin-bottom: 45px;
 }

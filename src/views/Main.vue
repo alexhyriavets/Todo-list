@@ -1,7 +1,14 @@
 <template>
   <div class="main">
     <NoteEditor @add="addNoteHandler" />
+    <img
+      v-if="showSpinner" 
+      :src="$options.spinner"
+      alt="load"
+      class="spinner"
+    >
     <NotesGrid
+      v-else
       :notes="notes"
       @delete="deleteNoteHandler"
     />
@@ -13,8 +20,11 @@ import { mapActions, mapState } from 'vuex'
 
 import NoteEditor from '@/components/Main/NoteEditor'
 import NotesGrid from '@/components/Main/NotesGrid'
+import spinner from '@/assets/loader.gif'
 
 export default {
+  spinner,
+
   name: 'Main',
   components: {
     NoteEditor,
@@ -22,7 +32,8 @@ export default {
   },
   data () {
     return {
-      newTodo: ''
+      newTodo: '',
+      showSpinner: true
     }
   },
   computed: {
@@ -31,6 +42,8 @@ export default {
     })
   },
   async created () {
+    this.showSpinner = true
+
     try {
       await this.fetchNotes()
     } catch (err) {
@@ -40,6 +53,8 @@ export default {
         type: 'error'
       })
       console.error(err)
+    } finally {
+      this.showSpinner = false
     }
   },
   methods: {
@@ -103,6 +118,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.spinner {
+  width: 100px;
+  margin: 0 auto;
+  display: block;
+}
 </style>
 
 
