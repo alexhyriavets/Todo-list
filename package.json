@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.11",
+    "express": "^4.16.4",
     "vue": "^2.5.17",
     "vue-click-outside": "^1.0.7",
     "vue-color": "^2.7.0",
