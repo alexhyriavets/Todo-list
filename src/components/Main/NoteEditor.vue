@@ -6,6 +6,7 @@
       class="todo-input"
       type="textarea"
       :autosize="{ minRows: 6, maxRows: 6}"
+      resize="none"
       placeholder="Write a todo message.."
     />
     <br>

@@ -9,7 +9,7 @@
     >
     <NotesGrid
       v-else
-      :notes="notes"
+      :notes="filteredNotes"
       @delete="deleteNoteHandler"
     />
   </div>
@@ -33,13 +33,25 @@ export default {
   data () {
     return {
       newTodo: '',
-      showSpinner: true
+      showSpinner: true,
+      currentHashtag: ''
     }
   },
   computed: {
     ...mapState({
       notes: state => state.notes.notes
-    })
+    }),
+    filteredNotes () {
+      return this.notes.filter(note => note.text.includes(this.currentHashtag))
+    }
+  },
+  watch: {
+    $route: {
+      handler (from, to) {
+        this.currentHashtag = from.hash
+      },
+      immediate: true
+    }
   },
   async created () {
     this.showSpinner = true

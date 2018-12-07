@@ -1,7 +1,9 @@
 <template>
   <el-container>
     <el-header>
-      <h1>Todo List</h1>
+      <h1>
+        <a class="title" href="/#/">Todo List</a>
+      </h1>
     </el-header>
     <el-main>
       <router-view />
@@ -10,16 +12,21 @@
 </template>
 
 <style lang="scss">
-  body, html {
-    padding: 0;
-    margin: 0;
-  }
+body, html {
+  padding: 0;
+  margin: 0;
+}
 
-  h1 {
-    color: #fff;
-  }
+h1 {
+  color: #fff;
+}
 
-  .el-header {
-    background-color: #409eff;
-  }
+.el-header {
+  background-color: #409eff;
+}
+
+.title {
+  color: white;
+  text-decoration: none;
+}
 </style>

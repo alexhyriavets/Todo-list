@@ -3,9 +3,7 @@
     <div class="close-btn" @click="$emit('delete', note.messageID)">
       &times;
     </div>
-    <div class="note">
-      {{ note.text }}
-    </div>
+    <div class="note" v-html="noteText" />
   </div>
 </template>
 
@@ -16,6 +14,14 @@ export default {
     note: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    noteText () {
+      return this.note.text.replace(
+        /(^|\s)(#[a-z\d-]+)/ig,
+        `$1<a href="/#/?tag=$2" class='hash-tag'>$2</a>`
+      )
     }
   }
 }
@@ -46,5 +52,18 @@ export default {
   top: 5px;
   right: 10px;
   cursor: pointer;
+}
+
+.hash-tag {
+  color: aquamarine;
+
+  &:visited {
+    color: aquamarine;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 </style>
